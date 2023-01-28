@@ -577,6 +577,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Oscillator.cpp">
+      <Filter>ExpressionSynth\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>ExpressionSynth\Source</Filter>
     </ClCompile>
@@ -2886,6 +2889,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Oscillator.h">
+      <Filter>ExpressionSynth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>ExpressionSynth\Source</Filter>
     </ClInclude>

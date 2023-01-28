@@ -130,7 +130,7 @@ bool ExpressionSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& l
 #endif
 
 void ExpressionSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
-{
+{    
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -150,11 +150,16 @@ void ExpressionSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    for (int channel = 0; channel < totalNumOutputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
+        // GENERATE AUDIO DATA HERE
+        // Fill the required number of samples with noise between -0.125 and +0.125
+        for (auto sample = 0; sample < buffer.getNumSamples(); ++sample)
+        {
+            channelData[sample] = oscillator.GetSample(0.25f);   //random.nextFloat() * 0.1f - 0.125f;
+        }
     }
 }
 

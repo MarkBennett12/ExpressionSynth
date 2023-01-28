@@ -6,6 +6,8 @@
               pluginManufacturer="Mark">
   <MAINGROUP id="c6jE1A" name="ExpressionSynth">
     <GROUP id="{6646C537-3AE8-9EF7-E943-7D669E0A1D8E}" name="Source">
+      <FILE id="RdA62p" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="MgBUr9" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="j9e5hy" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="VlB7z0" name="PluginProcessor.h" compile="0" resource="0"

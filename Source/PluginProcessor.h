@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "Oscillator.h"
 
 //==============================================================================
 /**
@@ -58,5 +59,8 @@ public:
 
 private:
     //==============================================================================
+    juce::Random random;
+    Oscillator oscillator;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ExpressionSynthAudioProcessor)
 };
