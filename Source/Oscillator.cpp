@@ -10,7 +10,12 @@
 
 #include "Oscillator.h"
 
-float Oscillator::GetSample(float volume)
+float Oscillator::WhiteNoiseGenerator(float volume)
 {
     return random.nextFloat() * volume - 0.125f;
+}
+
+float Oscillator::GetSample(float volume)
+{
+    return WhiteNoiseGenerator(volume);
 }

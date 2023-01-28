@@ -16,6 +16,7 @@ class Oscillator
 {
 private:
     juce::Random random;
+    float WhiteNoiseGenerator(float volume);
 
 public:
     float GetSample(float volume);
