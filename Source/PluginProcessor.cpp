@@ -95,6 +95,7 @@ void ExpressionSynthAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    oscillator.InitSineWavetable(sampleRate);
 }
 
 void ExpressionSynthAudioProcessor::releaseResources()
@@ -158,7 +159,7 @@ void ExpressionSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
         // Fill the required number of samples with noise between -0.125 and +0.125
         for (auto sample = 0; sample < buffer.getNumSamples(); ++sample)
         {
-            channelData[sample] = oscillator.GetSample(0.25f);   //random.nextFloat() * 0.1f - 0.125f;
+            channelData[sample] = oscillator.GetSample(sample, 0.25f);   //random.nextFloat() * 0.1f - 0.125f;
         }
     }
 }

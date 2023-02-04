@@ -60,7 +60,7 @@ public:
 private:
     //==============================================================================
     juce::Random random;
-    Oscillator oscillator;
+    expressionsynth::Oscillator oscillator;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ExpressionSynthAudioProcessor)
 };

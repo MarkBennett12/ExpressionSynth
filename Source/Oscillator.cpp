@@ -10,12 +10,36 @@
 
 #include "Oscillator.h"
 
-float Oscillator::WhiteNoiseGenerator(float volume)
+namespace expressionsynth
 {
-    return random.nextFloat() * volume - 0.125f;
-}
+    Oscillator::Oscillator()
+    {
+    }
 
-float Oscillator::GetSample(float volume)
-{
-    return WhiteNoiseGenerator(volume);
+    float Oscillator::WhiteNoiseGenerator()
+    {
+        return random.nextFloat() * 0.25 - 0.125f;
+    }
+
+    float Oscillator::SineWaveGenerator(int sample)
+    {
+        return sineWaveTable[sample];
+    }
+
+    void Oscillator::InitSineWavetable(double sampleRate)
+    {
+        increment = frequency * waveTableSize / sampleRate;
+
+        for (size_t i = 0; i < static_cast<int>(waveTableSize); i++)
+        {
+            sineWaveTable.insert(i, sin(2.0 * juce::double_Pi * i / waveTableSize));
+        }
+    }
+
+    float Oscillator::GetSample(int sample, float volume)
+    {
+        //return WhiteNoiseGenerator(volume) * volume;
+        return SineWaveGenerator(sample) * volume;
+    }
+
 }

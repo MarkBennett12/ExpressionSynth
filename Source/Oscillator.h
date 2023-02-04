@@ -12,13 +12,28 @@
 
 #include <JuceHeader.h>
 
-class Oscillator
+namespace expressionsynth
 {
-private:
-    juce::Random random;
-    float WhiteNoiseGenerator(float volume);
+    class Oscillator
+    {
+    private:
+        // wavetable varaibles
+        double waveTableSize = 1024;
+        double frequency = 440; // middle A
+        double phase = 0;
+        double increment = 0;
 
-public:
-    float GetSample(float volume);
+        juce::Random random;
 
-};
+        juce::Array<float> sineWaveTable;
+
+        float WhiteNoiseGenerator();
+        float SineWaveGenerator(int sample);
+
+    public:
+        Oscillator();
+        void InitSineWavetable(double sampleRate);
+        float GetSample(int sample, float volume);
+
+    };
+}
