@@ -13,6 +13,13 @@
       <FILE id="QbKpW8" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="kriJUY" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="n2JQKY" name="OscillatorFunctions.h" compile="0" resource="0"
+            file="Source/OscillatorFunctions.h"/>
+      <FILE id="q2r2fM" name="VoiceChannel.cpp" compile="1" resource="0"
+            file="Source/VoiceChannel.cpp"/>
+      <FILE id="Ljo2Ef" name="VoiceChannel.h" compile="0" resource="0" file="Source/VoiceChannel.h"/>
+      <FILE id="as0AhC" name="SSound.cpp" compile="1" resource="0" file="Source/SSound.cpp"/>
+      <FILE id="hxj3Bm" name="SSound.h" compile="0" resource="0" file="Source/SSound.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

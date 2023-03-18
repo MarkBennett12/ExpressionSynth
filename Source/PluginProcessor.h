@@ -9,6 +9,11 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "SSound.h"
+#include "VoiceChannel.h"
+
+
+#include "OscillatorFunctions.h"
 
 //==============================================================================
 /**
@@ -57,8 +62,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    //==============================================================================
-    juce::Random random;
+    juce::Synthesiser synthesiser;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ExpressionSynthAudioProcessor)
 };

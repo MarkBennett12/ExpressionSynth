@@ -22,6 +22,8 @@ ExpressionSynthAudioProcessor::ExpressionSynthAudioProcessor()
                        )
 #endif
 {
+    synthesiser.addSound(new SSound());
+    synthesiser.addVoice(new VoiceChannel());
 }
 
 ExpressionSynthAudioProcessor::~ExpressionSynthAudioProcessor()
@@ -95,6 +97,15 @@ void ExpressionSynthAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    synthesiser.setCurrentPlaybackSampleRate(sampleRate);
+
+    for (int i = 0; i < synthesiser.getNumVoices(); i++)
+    {
+        if (auto voice = dynamic_cast<VoiceChannel*>(synthesiser.getVoice(i)))
+        {
+            voice->prepareToPlay(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
+        }
+    }
 }
 
 void ExpressionSynthAudioProcessor::releaseResources()
@@ -135,9 +146,17 @@ void ExpressionSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
+    for (int i = 0; i < synthesiser.getNumVoices(); i++)
+    {
+        if (auto voice = dynamic_cast<juce::SynthesiserVoice*>(synthesiser.getVoice(i)))
+        {
+            // oscillator controls
+            // envelope
+            // LFO etc.
+        }
+    }
 
+    synthesiser.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
 //==============================================================================
