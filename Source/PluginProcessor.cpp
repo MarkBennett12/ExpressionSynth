@@ -23,7 +23,7 @@ ExpressionSynthAudioProcessor::ExpressionSynthAudioProcessor()
 #endif
 {
     synthesiser.addSound(new SSound());
-    synthesiser.addVoice(new VoiceChannel());
+    synthesiser.addVoice(new SVoice());
 }
 
 ExpressionSynthAudioProcessor::~ExpressionSynthAudioProcessor()
@@ -101,7 +101,7 @@ void ExpressionSynthAudioProcessor::prepareToPlay (double sampleRate, int sample
 
     for (int i = 0; i < synthesiser.getNumVoices(); i++)
     {
-        if (auto voice = dynamic_cast<VoiceChannel*>(synthesiser.getVoice(i)))
+        if (auto voice = dynamic_cast<SVoice*>(synthesiser.getVoice(i)))
         {
             voice->prepareToPlay(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
         }

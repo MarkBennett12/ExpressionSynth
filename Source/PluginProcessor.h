@@ -10,7 +10,7 @@
 
 #include <JuceHeader.h>
 #include "SSound.h"
-#include "VoiceChannel.h"
+#include "SVoice.h"
 
 
 #include "OscillatorFunctions.h"

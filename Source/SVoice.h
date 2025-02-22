@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    VoiceChannel.h
+    SVoice.h
     Created: 16 Mar 2023 11:41:00am
     Author:  Development
 
@@ -14,26 +14,42 @@
 #include "SSound.h"
 
 const int LOOKUPTABLESIZE = 256;
+const int NUMOSCILLATORS = 4;
 
-class VoiceChannel : public juce::SynthesiserVoice
+class SVoice : public juce::SynthesiserVoice
 {
 private:
     static juce::Random random;
 
-    juce::dsp::Oscillator<float> whiteNoiseGenerator{ whiteNoise }; // white noise
+    float waveFormSelector = 0.0f;
+    float sineGainAmount = 0.0f;
+    float squareGainAmount = 0.0f;
+    float sawGainAmount = 0.0f;
+    float noiseGainAmount = 0.0f;
+
     juce::dsp::Oscillator<float> sineWaveGenerator{ sineWave, LOOKUPTABLESIZE }; // sine wave
-    juce::dsp::Oscillator<float> sawWaveGenerator{ sawWave, LOOKUPTABLESIZE }; // saw wave
     juce::dsp::Oscillator<float> squareWaveGenerator{ squareWave, LOOKUPTABLESIZE }; // square wave
+    juce::dsp::Oscillator<float> sawWaveGenerator{ sawWave, LOOKUPTABLESIZE }; // saw wave
+    juce::dsp::Oscillator<float> triangleWaveGenerator{ sawWave, LOOKUPTABLESIZE }; // saw wave
+    juce::dsp::Oscillator<float> whiteNoiseGenerator{ whiteNoise }; // white noise
 
     juce::ADSR gainEnvelope;
     juce::ADSR::Parameters ADSRParameters;
-    juce::dsp::Gain<float> gain;
+
+    juce::dsp::Gain<float> sineGain;
+    juce::dsp::Gain<float> squareGain;
+    juce::dsp::Gain<float> sawGain;
+    juce::dsp::Gain<float> triangleGain;
+    juce::dsp::Gain<float> noiseGain;
+
+    juce::dsp::Gain<float> voiceGain;
 
     bool isPrepared = false;
 
     static float whiteNoise(float x);
     static float sineWave(float x);
     static float sawWave(float x);
+    static float triangleWave(float x);
     static float squareWave(float x);
 
 public:
